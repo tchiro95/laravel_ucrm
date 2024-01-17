@@ -5,6 +5,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
+use App\Http\Controllers\ItemController;
+
+// Route::resourceとするとcrud全てのルートを自動で作成してくれる。make:model -aとしたときに使うと良い。
+
+Route::resource('/item',ItemController::class)->middleware(['auth', 'verified']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +43,11 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
