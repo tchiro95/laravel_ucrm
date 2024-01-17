@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
+use App\Models\InertiaTest;
+
+class InertiaTestController extends Controller
+{
+    //
+    public function index(){
+        return Inertia::render('inertia/index',['blogs'=>InertiaTest::all( )]);
+    }
+    public function create(){
+        return Inertia::render('inertia/create');
+    }
+    public function show($id){
+        return Inertia::render('inertia/show',[ 'id'=>$id, 'blog'=>InertiaTest::findOrFail($id)]);
+    }
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'title' => ['required', 'max:50'],
+            'contents' => ['required', 'string', 'max:255'],
+        ]);
+        $inertiaTest = new InertiaTest;
+        $inertiaTest->title = $request->title;
+        $inertiaTest->contents =$request->contents;
+        $inertiaTest->save();
+        return to_route('inertia.index')->with([
+            'message' => '登録しました'
+        ]);
+    }
+    public function delete($id){
+        $book = InertiaTest::findOrFail($id);
+
+        $book->delete();
+        return to_route('inertia.index')->with([
+            'message' => '削除しました'
+        ]);
+    }
+
+
+}
