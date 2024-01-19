@@ -9,9 +9,6 @@ use App\Http\Controllers\ItemController;
 
 // Route::resourceとするとcrud全てのルートを自動で作成してくれる。make:model -aとしたときに使うと良い。
 
-Route::resource('/item',ItemController::class)->middleware(['auth', 'verified']);
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +19,10 @@ Route::resource('/item',ItemController::class)->middleware(['auth', 'verified'])
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/Inertia-test', function () {
+
+Route::resource('/items',ItemController::class)->middleware(['auth', 'verified']);
+
+Route::get('/inertia-test', function () {
     return Inertia::render('InertiaTest' );
 });
 Route::get('/component-test', function () {
@@ -32,7 +32,7 @@ Route::get('/component-test', function () {
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
 Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
-Route::post('/Inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
+Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
 Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
 
 Route::get('/', function () {
