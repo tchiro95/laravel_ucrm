@@ -154,11 +154,18 @@ return [
     */
 
     'attributes' => [
-        "title"=>"タイトル",
-        "contents"=>"本文",
-        "name"=>"名前",
-        "memo"=>"メモ",
-        "price"=>"料金",  
+        "title" => "タイトル",
+        "contents" => "本文",
+        "name" => "名前",
+        "memo" => "メモ",
+        "price" => "料金",
+        'kana' => 'カナ',
+        'tel' => '電話番号',
+        'email' => 'メールアドレス',
+        'postcode' => '郵便番号',
+        'address' => '住所',
+        'birthday' => '誕生日',
+        'gender' => '性別'
     ],
 
 ];
