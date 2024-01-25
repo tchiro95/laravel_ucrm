@@ -7,6 +7,9 @@ use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseControllerController;
+use App\Models\Purchase;
 
 // Route::resourceとするとcrud全てのルートを自動で作成してくれる。make:model -aとしたときに使うと良い。
 
@@ -21,15 +24,17 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-Route::resource('/customers',CustomerController::class)->middleware(['auth', 'verified']);
+Route::resource('/purchases', PurchaseController::class)->middleware(['auth', 'verified']);
 
-Route::resource('/items',ItemController::class)->middleware(['auth', 'verified']);
+Route::resource('/customers', CustomerController::class)->middleware(['auth', 'verified']);
+
+Route::resource('/items', ItemController::class)->middleware(['auth', 'verified']);
 
 Route::get('/inertia-test', function () {
-    return Inertia::render('InertiaTest' );
+    return Inertia::render('InertiaTest');
 });
 Route::get('/component-test', function () {
-    return Inertia::render('ComponentTest' );
+    return Inertia::render('ComponentTest');
 });
 
 Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
@@ -62,4 +67,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
