@@ -39,8 +39,15 @@ const showingNavigationDropdown = ref(false);
                   :href="route('purchases.create')"
                   :active="route().current('purchases.create')"
                 >
-                購買管理 　</NavLink
+                  購買管理 　</NavLink
                 >
+                <NavLink
+                  :href="route('purchases.index')"
+                  :active="route().current('purchases.index')"
+                >
+                  購買利敵 　</NavLink
+                >
+
                 <NavLink
                   :href="route('items.index')"
                   :active="route().current('items.index')"
@@ -158,6 +165,12 @@ const showingNavigationDropdown = ref(false);
               :active="route().current('purchases.create')"
             >
               購買管理
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              :href="route('purchases.index')"
+              :active="route().current('purchases.index')"
+            >
+              購買履歴
             </ResponsiveNavLink>
 
             <ResponsiveNavLink
