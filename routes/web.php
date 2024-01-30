@@ -7,9 +7,9 @@ use Inertia\Inertia;
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\PurchaseControllerController;
-use App\Models\Purchase;
+
 
 // Route::resourceとするとcrud全てのルートを自動で作成してくれる。make:model -aとしたときに使うと良い。
 
@@ -23,6 +23,7 @@ use App\Models\Purchase;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/analysis', [AnalysisController::class,'index'])->name('analysis');
 
 Route::resource('/purchases', PurchaseController::class)->middleware(['auth', 'verified']);
 
